@@ -7,6 +7,7 @@
     <title>To-Do</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="favicon" type="image/x-icon" href="./images/Microsoft_To-Do_icon.png">
+    <script src="./js/script.js"></script>
 </head>
 
 <body>
@@ -23,33 +24,24 @@
                 <option value="incomplete">Incomplete</option>
             </select>
         </label>
-        <div class="task-area">
-            <label for="checkbox" class="task-checkbox">
-                <input type="checkbox" name="note-1" id="">NOTE #1
-            </label>
-            <label for="checkbox" class="task-checkbox">
-                <input type="checkbox" name="note-2" id="">NOTE #2
-            </label>
-            <label for="checkbox" class="task-checkbox">
-                <input type="checkbox" name="note-3" id="">NOTE #3
-            </label>
-
+        <div class="task-area" id="task-area">
 
         </div>
-        <button class="container__addbutton"><img src="./images/addsymbol.png" alt=""></button>
+        <button class="container__addbutton" id="addTask-btn" onclick="addTask()">
+            <img src="./images/addsymbol.png" alt="" />
+        </button>
         </div>
     </main>
-    <div class="add-item-container">
+    <div class="add-item-container" id="modal-container">
         <div class="add-item">
             <h2 class="add-item__heading">NEW NOTE</h2>
-            <input type="text" class="add-item__input" placeholder="Add New Note">
+            <input type="text" class="add-item__input" placeholder="Add New Note" id="input-task">
             <div class="add-item__button">
-                <button id="cancel-btn">CANCEL</button>
-                <button id="add-itembtn">ADD TO LIST</button>
+                <button id="cancel-btn" onclick="hideTask()">CANCEL</button>
+                <button id="add-itembtn" onclick="addTaskToList()">ADD TO LIST</button>
             </div>
         </div>
     </div>
 </body>
-<script src="./js/script.js"></script>
 
 </html>

@@ -95,19 +95,25 @@ button:hover {
 
 /* ++++++++++++++++++++++++++++++++++++++++++ */
 .add-item-container {
-  background-color: rgba(0, 0, 0, 0.3);
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
+  top: 0;
+  z-index: 1;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  transition-delay: 2s;
 }
 
 .add-item {
+  background-color: white;
   padding: 0 30px;
-  border: 2px solid black;
   width: 500px;
   height: 289px;
   border-radius: 16px;
-  position: absolute;
-  top: 50%;
-  left: 15%;
 }
 
 .add-item input[type="text"] {
@@ -120,4 +126,14 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.add-item__button button {
+  padding: 10px 20px;
+  background-color: #6c63ff;
+  border: 1px solid #6c63ff;
+  border-radius: 6px;
+}
+
+#cancel-btn {
+  background-color: white;
 }
