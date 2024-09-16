@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="favicon" type="image/x-icon" href="./images/Microsoft_To-Do_icon.png">
+    <link rel="icon" type="image/x-icon" href="./images/Microsoft_To-Do_icon.png">
     <script src="./js/script.js"></script>
 </head>
 
@@ -39,6 +39,16 @@
             <div class="add-item__button">
                 <button id="cancel-btn" onclick="hideTask()">CANCEL</button>
                 <button id="add-itembtn" onclick="addTaskToList()">ADD TO LIST</button>
+            </div>
+        </div>
+    </div>
+    <div class="add-item-container" id="update-modal-container">
+        <div class="add-item">
+            <h2 class="add-item__heading">UPDATE NOTE</h2>
+            <input type="text" class="add-item__input" placeholder="Add New Note" id="update-task">
+            <div class="add-item__button">
+                <button id="cancel-btn" onclick="uhideTask()">CANCEL</button>
+                <button id="add-itembtn" onclick="updateToList()">UPDATE LIST</button>
             </div>
         </div>
     </div>
