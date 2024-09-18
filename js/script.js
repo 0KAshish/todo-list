@@ -1,6 +1,3 @@
-//const addTasks = document.getElementById("modal-container");
-//const cancelBtn = document.getElementById("cancel-btn");
-
 function addTask() {
 	document.getElementById("modal-container").style.display = "flex";
 }
@@ -8,31 +5,29 @@ function addTask() {
 function hideTask() {
 	document.getElementById("modal-container").style.display = "none";
 }
+
 function uhideTask() {
 	document.getElementById("update-modal-container").style.display = "none";
 }
 
-
 const myTask = [];
-
-function addElement() {
-	let ele = document.createElement("label");
-	ele.classList.add("task-checkbox");
-	ele.innerHTML =
-			myTask.map(({idx, val} , index)=> `<input type="checkbox" name="note-1" id="task-${idx}">${val}
-                  <div class="updelbtn">
-                  <button onclick="delBtn(${idx})" class="delbtn">Delete</button>
-                  <button onclick="upBtn(${idx})" class="upbtn">Update</button></div>`)
-	return ele;
-}
-
-function showAllTasks() {
-
-}
-
-
-
 let idx = 0;
+
+// function to show all the to-do present in the myTask list
+const renderTodo = () => {
+	document.getElementById('task-area').innerHTML = myTask.map(({ idx, task1 }) =>
+			  `<div key=${idx} class>`+	
+			  	`<input type="checkbox" name="note-1" id="task-${idx}">${task1}`+
+			  		`<div class="updelbtn">`+
+			  			`<button onclick="delBtn(${idx})" class="delbtn">Delete</button>`+
+			  			`<button onclick="upBtn(${idx})" class="upbtn">Update</button>`+
+					`</div>`+
+				`</div>`
+			).join('');
+}
+
+
+// function to add the task in the to-do array / list
 function addTaskToList() {
 	idx++;
 	let task1 = document.getElementById("input-task").value;
@@ -42,15 +37,21 @@ function addTaskToList() {
 		myTask.push({ task1, idx });
 		document.getElementById("input-task").value = "";
 		hideTask();
-		// console.log(myTask);
-		// let par = document.getElementById("task-area");
-		// par.appendChild(addElement(task1, idx));
-		renderTodo()
+		renderTodo();
 	}
 }
 
 
 let currUpdateIdx = -1;
+// function to find index
+function findTask(arr, idx) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i].idx == idx) {
+			return arr[i].task1;
+		}
+	}
+	return "";
+}
 
 // this will validate the index, and open the update modal
 function upBtn(idx) {
@@ -62,17 +63,7 @@ function upBtn(idx) {
 	currUpdateIdx = idx;
 	document.getElementById("update-modal-container").style.display = "flex";
 	document.getElementById('update-task').value = currTask;
-	
-}
 
-// function to find index
-function findTask(arr, idx) {
-	for (let i = 0; i < arr.length; i++) {
-		if (arr[i].idx == idx) {
-			return arr[i].task1;
-		}
-	}
-	return "";
 }
 
 function updateToList() {
@@ -82,17 +73,13 @@ function updateToList() {
 		alert("Task not updated")
 		return;
 	}
-	console.log(uptask);
-
 
 	// where to change in array (where idx = currUpdateIdx)
-	for(let i = 0; i < myTask.length; i++) {
-		if(myTask[i].idx == currUpdateIdx) {
+	for (let i = 0; i < myTask.length; i++) {
+		if (myTask[i].idx == currUpdateIdx) {
 			myTask[i].task1 = uptask;
 		}
 	}
-	console.log(myTask);
-
 
 	// now array is updated, have to show at dom
 	renderTodo();
@@ -101,9 +88,11 @@ function updateToList() {
 	uhideTask();
 }
 
-const renderTodo=()=>{
-	document.getElementById('task-area').innerHTML = myTask?.map(({idx, task1},index)=>`<input type="checkbox" name="note-1" id="task-${idx}">${task1}
-			  <div class="updelbtn">
-			  <button onclick="delBtn(${idx})" class="delbtn">Delete</button>
-			  <button onclick="upBtn(${idx})" class="upbtn">Update</button></div>`)
+function delBtn(idx){
+	let currTask = findTask(myTask, idx)
+	let selectedEle = myTask.findIndex(data=>data.idx === idx) 
+	if(selectedEle > -1){
+		myTask.splice(selectedEle ,1)
+	}
+	renderTodo()
 }
