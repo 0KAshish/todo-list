@@ -11,11 +11,12 @@ function uhideTask() {
 }
 
 const myTask = [];
+let temparr= []
 let idx = 0;
 
 // function to show all the to-do present in the myTask list
-const renderTodo = () => {
-	document.getElementById('task-area').innerHTML = myTask.map(({ idx, task1 }) =>
+const renderTodo = (_mytask) => {
+	document.getElementById('task-area').innerHTML = _mytask.map(({ idx, task1 }) =>
 			  `<div key=${idx} class>`+	
 			  	`<input type="checkbox" name="note-1" id="task-${idx}">${task1}`+
 			  		`<div class="updelbtn">`+
@@ -37,7 +38,7 @@ function addTaskToList() {
 		myTask.push({ task1, idx });
 		document.getElementById("input-task").value = "";
 		hideTask();
-		renderTodo();
+		renderTodo(myTask);
 	}
 }
 
@@ -82,7 +83,7 @@ function updateToList() {
 	}
 
 	// now array is updated, have to show at dom
-	renderTodo();
+	renderTodo(myTask);
 
 	// close the modal
 	uhideTask();
@@ -94,5 +95,12 @@ function delBtn(idx){
 	if(selectedEle > -1){
 		myTask.splice(selectedEle ,1)
 	}
-	renderTodo()
+	renderTodo(myTask)
+}
+
+function searchTask(){
+	let searchValue = document.getElementById('search').value
+	const findTask = myTask.filter((data, index)=>{return data.task1.includes(searchValue)})
+	temparr = [...findTask]
+	renderTodo(temparr)
 }

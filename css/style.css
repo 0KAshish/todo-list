@@ -51,10 +51,12 @@ h1, h2 {
   right: 16px;
   border: none;
   background-color: white;
+  z-index: 1;
 }
 .search button img {
   width: 21px;
   height: 21px;
+  z-index: 1;
 }
 .container__task-list {
   margin: 10px;
